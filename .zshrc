@@ -84,8 +84,9 @@ alias c='clear'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-# OS dependent scripts
-if [[ $(uname) == "Darwin" ]]; then
+# Environment dependent scripts
+if [[ $(uname -o) == "Darwin" ]]; then
 	source "$HOME"/.config/zsh/os/mac.zsh
+elif [[ $(uname -o) == "Android" ]]; then
+	source "$HOME"/.config/zsh/os/android.zsh
 fi
-
