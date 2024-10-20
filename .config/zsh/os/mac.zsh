@@ -9,3 +9,4 @@ if type brew &>/dev/null; then
     autoload -Uz compinit
 compinit
 fi
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

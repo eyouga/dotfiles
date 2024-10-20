@@ -1,6 +1,6 @@
-# OS dependent scripts
-if [[ $(uname) == "Darwin" ]]; then
-	source "$HOME"/.config/zsh/os/mac.zsh
+if [ -z "$TMUX" ]
+then
+    tmux attach -t main || tmux new -s main
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -48,7 +48,6 @@ zinit cdreplay -q
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-if [ "$TMUX" = "" ]; then tmux; fi
 
 # Keybindings
 bindkey -e
@@ -85,4 +84,8 @@ alias c='clear'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# OS dependent scripts
+if [[ $(uname) == "Darwin" ]]; then
+	source "$HOME"/.config/zsh/os/mac.zsh
+fi
+
