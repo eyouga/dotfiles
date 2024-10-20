@@ -3,3 +3,8 @@
 	email = 53664387+LTE-creator@users.noreply.github.com
 [init]
 	defaultBranch = master
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
