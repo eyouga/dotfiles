@@ -9,4 +9,9 @@ if type brew &>/dev/null; then
     autoload -Uz compinit
 compinit
 fi
+
+#Environment variables
+export EDITOR=/opt/homebrew/bin/nvim
+
+#Iterm2 cli components
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

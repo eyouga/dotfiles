@@ -73,8 +73,8 @@ setopt HIST_NO_FUNCTIONS
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza $realpath'
 
 # Aliases
 alias ls='eza -a'
@@ -91,3 +91,4 @@ if [[ $(uname -o) == "Darwin" ]]; then
 elif [[ $(uname -o) == "Android" ]]; then
 	source "$HOME"/.config/zsh/os/android.zsh
 fi
+
