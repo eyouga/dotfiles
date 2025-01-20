@@ -10,7 +10,6 @@ return {
 				"bash",
 				"c",
 				"diff",
-				"help",
 				"html",
 				"lua",
 				"luadoc",
