@@ -1,5 +1,0 @@
-theme = dark:DoomOne,light:catppuccin-latte
-background-opacity = 0.8
-background-blur-radius = 20
-quick-terminal-position = center
-keybind = global:ctrl+&=toggle_quick_terminal

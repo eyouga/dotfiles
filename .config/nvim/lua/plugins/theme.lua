@@ -1,4 +1,5 @@
 return {
+	-- Theme
 	{ -- You can easily change to a different colorscheme.
 		-- Change the name of the colorscheme plugin below, and then
 		-- change the command in the config to whatever the name of that colorscheme is.
@@ -15,6 +16,26 @@ return {
 			vim.cmd.hi("Comment gui=none")
 		end,
 	},
+	-- Dark/light theme autoswitch
+	{
+		"f-person/auto-dark-mode.nvim",
+		opts = {
+			{
+				set_dark_mode = function()
+					vim.api.nvim_set_option_value("background", "dark", {})
+				end,
+				set_light_mode = function()
+					vim.api.nvim_set_option_value("background", "light", {})
+				end,
+				update_interval = 3000,
+				fallback = "dark",
+			},
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+	},
+	-- Transparency
 	{
 		"xiyaowong/transparent.nvim",
 	},
