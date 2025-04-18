@@ -34,18 +34,19 @@
 
           nixpkgs.config.allowUnfree = true;
 
-          environment.systemPackages = [
-            pkgs.wezterm
-            pkgs.yt-dlp
-            pkgs.mkalias
-            pkgs.nixfmt-rfc-style
-            pkgs.neovim
-            pkgs.keepassxc
-            pkgs.discord
-            pkgs.fzf
-            pkgs.eza
-            pkgs.zoxide
-            pkgs.lazygit
+          environment.systemPackages = with pkgs; [
+            wezterm
+            yt-dlp
+            mkalias
+            nixfmt-rfc-style
+            neovim
+            keepassxc
+            discord
+            fzf
+            eza
+            zoxide
+            lazygit
+            git-credential-manager
           ];
           homebrew = {
             enable = true;
