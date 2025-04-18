@@ -73,7 +73,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza $realpath'
 
 # Aliases
-alias ls='eza -a'
+alias ls='eza -la'
 alias vim='nvim'
 alias c='clear'
 
@@ -83,7 +83,6 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # Environment dependent scripts
 if [[ $(uname -o) == "Darwin" ]]; then
-	source "$HOME"/.config/zsh/os/mac.zsh
 elif [[ $(uname -o) == "Android" ]]; then
 	source "$HOME"/.config/zsh/os/android.zsh
 fi
