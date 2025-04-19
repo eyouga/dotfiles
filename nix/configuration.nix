@@ -5,16 +5,19 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -56,10 +59,11 @@
   services.xserver.xkb = {
     layout = "fr";
     variant = "";
+    options = "ctrl:swapcaps";
   };
 
   # Configure console keymap
-  console.keyMap = "fr";
+  console.useXkbConfig = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -87,7 +91,10 @@
   users.users.eyouga = {
     isNormalUser = true;
     description = "Lucien Thany--Eynard";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
@@ -96,30 +103,19 @@
     ];
   };
 
+  services.syncthing = {
+    enable = true;
+    group = "syncthing";
+    user = "eyouga";
+    dataDir = "/home/eyouga/sync";
+    configDir = "/home/eyouga/.config/syncthing";
+  };
+
   # Install zsh
   programs.zsh.enable = true;
 
   # Install firefox.
   programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     neovim
-     eza
-     tmux
-     git
-     zsh
-     stow
-     gcc
-     wezterm
-     lazygit
-  #  wget
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -128,6 +124,8 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
+  programs.ssh.startAgent = true;
 
   # List services that you want to enable:
 

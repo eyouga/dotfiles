@@ -29,26 +29,7 @@
       configuration =
         { pkgs, config, ... }:
         {
-          # List packages installed in system profile. To search by name, run:
-          # $ nix-env -qaP | grep wget
-
-          nixpkgs.config.allowUnfree = true;
-
-          environment.systemPackages = with pkgs; [
-            wezterm
-            yt-dlp
-            mkalias
-            nixfmt-rfc-style
-            neovim
-            keepassxc
-            discord
-            fzf
-            eza
-            zoxide
-            lazygit
-            git-credential-manager
-          ];
-          homebrew = {
+         homebrew = {
             enable = true;
             taps = builtins.attrNames config.nix-homebrew.taps;
             casks = [
@@ -105,6 +86,7 @@
       # $ darwin-rebuild build --flake .#simple
       darwinConfigurations."M2" = nix-darwin.lib.darwinSystem {
         modules = [
+          ./pkgs.nix
           configuration
           nix-homebrew.darwinModules.nix-homebrew
           {
@@ -140,6 +122,7 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
+          ./pkgs.nix
           ./configuration.nix
           # inputs.home-manager.nixosModules.default
         ];
